@@ -1,0 +1,46 @@
+table dim_fecha
+	lineageTag: f4a13d5c-8f0d-5667-8b6c-fc41e1117b90
+
+	column fecha
+		dataType: dateTime
+		lineageTag: c936342e-30dd-5bda-be49-7cda830eb35c
+		summarizeBy: none
+		sourceColumn: fecha
+		formatString: yyyy-mm-dd
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column anio
+		dataType: int64
+		lineageTag: 3a568e91-e4d0-5dba-9b63-7cfb43e41071
+		summarizeBy: none
+		sourceColumn: anio
+
+	column mes
+		dataType: int64
+		lineageTag: 2fcae0b4-d65b-52a1-bae4-894b33fa5a3b
+		summarizeBy: none
+		sourceColumn: mes
+
+	column anio_mes
+		dataType: string
+		lineageTag: 064989ad-fe52-5d0f-ad4f-fd118fb35304
+		summarizeBy: none
+		sourceColumn: anio_mes
+
+	column dia
+		dataType: int64
+		lineageTag: caaba7a7-fc16-590d-844a-42c9ceacf60f
+		summarizeBy: none
+		sourceColumn: dia
+
+	partition dim_fecha = m
+		mode: import
+		source =
+				let
+					Origen = LeerGold("dim_fecha", "bdNBTsNAEETRPWeZSFM19tg+DbJCEFkkLLi/BEHGP6i8a/XfPXW/X84fa1nv189yu3z9Dq+P4e26vri6n1RPVeUxFtWyrYqIjmhii9iIQ8SBOEYciT1iJ04RJ+IccSYuEZc9bst/CJV6QISR0kggKZGEklJJMCmZhJPSSUApoYSUUkpQKamEldPKWDmtjJUP7gkrp5WxcloZK6eVsXJaGSunlbFyWhkrp5WxamnVsGpp1f6sxGNqqypP0RFNbBEbcYg4EMeII7FH7MQp4kScI87EJeKyx/0xnxAq9YAII6WRQFIiCSWlkmBSMgknpZOAUkIJKaWUoFJSCSunlbFyWhkrH9wTVk4rY+W0MlZOq5/H/AY="),
+					Tipos = Table.TransformColumnTypes(Origen, {{"fecha", type date}, {"anio", Int64.Type}, {"mes", Int64.Type}, {"anio_mes", type text}, {"dia", Int64.Type}}, "en-US")
+				in
+					Tipos
+
+	annotation PBI_ResultType = Table

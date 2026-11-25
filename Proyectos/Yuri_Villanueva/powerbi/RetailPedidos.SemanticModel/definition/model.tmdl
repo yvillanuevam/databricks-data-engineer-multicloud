@@ -1,0 +1,16 @@
+model Model
+	culture: es-PE
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["ModoDemo","Servidor","RutaHTTP","Catalogo","EsquemaGold","Proveedor","LeerGold","dim_fecha","dim_sede","dim_categoria","fact_pedido"]
+
+ref table dim_fecha
+ref table dim_sede
+ref table dim_categoria
+ref table fact_pedido

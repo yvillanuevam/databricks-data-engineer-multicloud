@@ -1,0 +1,26 @@
+table dim_sede
+	lineageTag: 868c4333-326e-55b8-b904-3969f8ec02f0
+
+	column sede_id
+		dataType: string
+		lineageTag: 98f91b07-4e0b-56d4-b128-d7372c89bb30
+		summarizeBy: none
+		sourceColumn: sede_id
+		isHidden
+
+	column sede
+		dataType: string
+		lineageTag: a20c63a1-391e-59d2-b79d-f30386e55682
+		summarizeBy: none
+		sourceColumn: sede
+
+	partition dim_sede = m
+		mode: import
+		source =
+				let
+					Origen = LeerGold("dim_sede", "JY9LakMxDEXnbxVdwBtI1sfSuHRWOukCiizLEEgJJOn+a8hIcC/ncPWoWT+XeT72PQolsgB5oepUWX2VETNGkBP3RCteTqqL1cqUIYNdSis31c73uF7jdoxQ6LVLm2WJM5EnUXPoU4Cr6egiozkB+FhNc9MxLCA9PYjOz8tvvH08nnVsbDRtTGtrRjq7QS4MmuhiImlYRVUyVBB9+I5wAEKXubjqpfq63bcLucSdSiLcI2q1oUMj5/6IwY2TLXU221sEOqVlJSuGo7IDvFzff/fjHw=="),
+					Tipos = Table.TransformColumnTypes(Origen, {{"sede_id", type text}, {"sede", type text}}, "en-US")
+				in
+					Tipos
+
+	annotation PBI_ResultType = Table

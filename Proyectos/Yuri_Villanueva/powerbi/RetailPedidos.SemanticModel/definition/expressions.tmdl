@@ -1,0 +1,32 @@
+expression ModoDemo = true meta [IsParameterQuery=true, Type="Logical", IsParameterQueryRequired=true]
+
+expression Servidor = "REEMPLAZAR_HOSTNAME" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+expression RutaHTTP = "/sql/1.0/warehouses/REEMPLAZAR_ID" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+expression Catalogo = "workspace" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+expression EsquemaGold = "yvillanuevam_gold" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+expression Proveedor = "Databricks" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+expression LeerGold =
+	(tabla as text, respaldo as text) as table =>
+	if ModoDemo then
+		Table.PromoteHeaders(
+			Csv.Document(
+				Binary.Decompress(Binary.FromText(respaldo, BinaryEncoding.Base64), Compression.Deflate),
+				[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]
+			),
+			[PromoteAllScalars=true]
+		)
+	else
+		let
+			Catalogos = if Proveedor = "Azure Databricks"
+				then Databricks.Catalogs(Servidor, RutaHTTP, [Catalog=null, Database=null])
+				else DatabricksMultiCloud.Catalogs(Servidor, RutaHTTP, [Catalog=null, Database=null]),
+			DatosCatalogo = Catalogos{[Name=Catalogo, Kind="Database"]}[Data],
+			DatosEsquema = DatosCatalogo{[Name=EsquemaGold, Kind="Schema"]}[Data],
+			DatosTabla = DatosEsquema{[Name=tabla, Kind="Table"]}[Data]
+		in
+			DatosTabla

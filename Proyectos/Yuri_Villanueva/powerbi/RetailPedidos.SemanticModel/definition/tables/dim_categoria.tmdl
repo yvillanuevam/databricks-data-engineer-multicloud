@@ -1,0 +1,26 @@
+table dim_categoria
+	lineageTag: f72a2e1a-0eaa-54d0-b362-d15eb569e179
+
+	column categoria_id
+		dataType: string
+		lineageTag: cd56b9d9-ce27-5691-a17b-304800dc6d4b
+		summarizeBy: none
+		sourceColumn: categoria_id
+		isHidden
+
+	column categoria
+		dataType: string
+		lineageTag: 900b9eca-c280-534b-9706-c5bf0e9d38cb
+		summarizeBy: none
+		sourceColumn: categoria
+
+	partition dim_categoria = m
+		mode: import
+		source =
+				let
+					Origen = LeerGold("dim_categoria", "NY87TgUxDAD7PcsWsePPuqegoaNHju2snoRY9HjX4hRcjFBQ2tJ4xuGPOq/7zd9uucf/sDkNapDAFVKB6Nh8apRytOOIxr72Mm1a68YoUTSHKVgSNpCxP9XndX/U17ZI4MmAQjqagYsrta6iEuk2u4xlKJ5tcU2lI1YaS2i6suD+fJ1+3wrQQJduTmcS6ik5eIX1obxSxyFeDtDy7xibBLI1GWN4hfXcX670DTTwwJrTsgfB4Us0mhPQovrA7usfTXJKKyzF4xgdaAVOTdPYXys+rvfr/Pn27Rc="),
+					Tipos = Table.TransformColumnTypes(Origen, {{"categoria_id", type text}, {"categoria", type text}}, "en-US")
+				in
+					Tipos
+
+	annotation PBI_ResultType = Table
