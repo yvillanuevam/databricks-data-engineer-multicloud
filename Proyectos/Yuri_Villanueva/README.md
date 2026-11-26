@@ -102,6 +102,6 @@ La transformación se ensayó con Spark 4.0.1 y Delta Lake 4.0.0 locales. Los CS
 
 Al 25/11 la prueba local produjo **S/ 521.743,40** en ventas entregadas, **1.636** pedidos entregados, **79,71 %** de puntualidad y **92** cancelados. El control verificó cero duplicados, huérfanos y diferencias entre Silver y Gold. `OPTIMIZE` y `VACUUM` quedaron registrados en el historial Delta de la prueba.
 
-## Power BI y sustentación
+## Power BI
 
 - [Conectar y actualizar el informe de una página](powerbi/README.md).
