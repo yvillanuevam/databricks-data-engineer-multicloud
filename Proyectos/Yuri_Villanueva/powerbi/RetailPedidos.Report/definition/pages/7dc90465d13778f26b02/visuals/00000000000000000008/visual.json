@@ -1,17 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "00000000000000000008",
   "position": {
-    "x": 958,
-    "y": 188,
-    "width": 294,
-    "height": 114,
+    "x": 957.45019920318725,
+    "y": 212.90836653386452,
     "z": 8000,
+    "height": 114,
+    "width": 294,
     "tabOrder": 8000
   },
   "visual": {
     "visualType": "card",
-    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Values": {
@@ -87,7 +86,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Pedidos cancelados'"
+                  "Value": "'Tasa de cancelación'"
                 }
               }
             },
@@ -119,6 +118,25 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "28f7f3b01466e0f4b395",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_pedido"
+              }
+            },
+            "Property": "Cancelación"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

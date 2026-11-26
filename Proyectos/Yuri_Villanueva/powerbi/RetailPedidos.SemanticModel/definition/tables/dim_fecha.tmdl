@@ -3,10 +3,10 @@ table dim_fecha
 
 	column fecha
 		dataType: dateTime
+		formatString: yyyy-mm-dd
 		lineageTag: c936342e-30dd-5bda-be49-7cda830eb35c
 		summarizeBy: none
 		sourceColumn: fecha
-		formatString: yyyy-mm-dd
 
 		annotation UnderlyingDateTimeDataType = Date
 
@@ -44,3 +44,6 @@ table dim_fecha
 					Tipos
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

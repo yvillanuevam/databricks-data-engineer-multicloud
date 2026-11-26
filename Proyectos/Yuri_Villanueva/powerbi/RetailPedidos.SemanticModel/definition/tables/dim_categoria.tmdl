@@ -3,10 +3,10 @@ table dim_categoria
 
 	column categoria_id
 		dataType: string
+		isHidden
 		lineageTag: cd56b9d9-ce27-5691-a17b-304800dc6d4b
 		summarizeBy: none
 		sourceColumn: categoria_id
-		isHidden
 
 	column categoria
 		dataType: string
@@ -24,3 +24,6 @@ table dim_categoria
 					Tipos
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

@@ -1,17 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "0000000000000000000a",
   "position": {
-    "x": 642,
-    "y": 316,
-    "width": 610,
-    "height": 380,
+    "x": 642.54980079681275,
+    "y": 340.398406374502,
     "z": 10000,
+    "height": 380,
+    "width": 610,
     "tabOrder": 10000
   },
   "visual": {
     "visualType": "columnChart",
-    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Category": {
@@ -70,6 +69,21 @@
         ]
       }
     },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {
@@ -116,6 +130,39 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d8fea75e6be1db662347",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_sede"
+              }
+            },
+            "Property": "sede"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "217c9ab09bca6ad8b04d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_pedido"
+              }
+            },
+            "Property": "Puntualidad"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

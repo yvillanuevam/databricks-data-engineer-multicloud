@@ -1,32 +1,64 @@
 expression ModoDemo = true meta [IsParameterQuery=true, Type="Logical", IsParameterQueryRequired=true]
+	lineageTag: c3a2e8fb-2728-4eab-b0c0-ba7f5726ca81
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Logical
 
 expression Servidor = "REEMPLAZAR_HOSTNAME" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 1d92af46-7823-46b7-9839-c1b834073817
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Text
 
 expression RutaHTTP = "/sql/1.0/warehouses/REEMPLAZAR_ID" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 6c0b0463-b891-43c2-8023-1a282f3b8f82
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Text
 
 expression Catalogo = "workspace" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: b0833508-6b4c-4022-8b57-84cdb4e6b95f
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Text
 
 expression EsquemaGold = "yvillanuevam_gold" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: aadd8bf7-94db-4f1d-aca0-3f6756f0697c
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Text
 
 expression Proveedor = "Databricks" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: deb106c9-f4bf-4297-a222-4f238936de07
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Text
 
 expression LeerGold =
-	(tabla as text, respaldo as text) as table =>
-	if ModoDemo then
-		Table.PromoteHeaders(
-			Csv.Document(
-				Binary.Decompress(Binary.FromText(respaldo, BinaryEncoding.Base64), Compression.Deflate),
-				[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]
-			),
-			[PromoteAllScalars=true]
-		)
-	else
-		let
-			Catalogos = if Proveedor = "Azure Databricks"
-				then Databricks.Catalogs(Servidor, RutaHTTP, [Catalog=null, Database=null])
-				else DatabricksMultiCloud.Catalogs(Servidor, RutaHTTP, [Catalog=null, Database=null]),
-			DatosCatalogo = Catalogos{[Name=Catalogo, Kind="Database"]}[Data],
-			DatosEsquema = DatosCatalogo{[Name=EsquemaGold, Kind="Schema"]}[Data],
-			DatosTabla = DatosEsquema{[Name=tabla, Kind="Table"]}[Data]
-		in
-			DatosTabla
+		(tabla as text, respaldo as text) as table =>
+		if ModoDemo then
+			Table.PromoteHeaders(
+				Csv.Document(
+					Binary.Decompress(Binary.FromText(respaldo, BinaryEncoding.Base64), Compression.Deflate),
+					[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]
+				),
+				[PromoteAllScalars=true]
+			)
+		else
+			let
+				Catalogos = if Proveedor = "Azure Databricks"
+					then Databricks.Catalogs(Servidor, RutaHTTP, [Catalog=null, Database=null])
+					else DatabricksMultiCloud.Catalogs(Servidor, RutaHTTP, [Catalog=null, Database=null]),
+				DatosCatalogo = Catalogos{[Name=Catalogo, Kind="Database"]}[Data],
+				DatosEsquema = DatosCatalogo{[Name=EsquemaGold, Kind="Schema"]}[Data],
+				DatosTabla = DatosEsquema{[Name=tabla, Kind="Table"]}[Data]
+			in
+				DatosTabla
+	lineageTag: 13176c35-67bd-467a-ab95-3657ccccb1c5
+

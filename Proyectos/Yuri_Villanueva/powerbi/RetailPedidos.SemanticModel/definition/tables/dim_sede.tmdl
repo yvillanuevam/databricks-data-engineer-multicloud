@@ -3,10 +3,10 @@ table dim_sede
 
 	column sede_id
 		dataType: string
+		isHidden
 		lineageTag: 98f91b07-4e0b-56d4-b128-d7372c89bb30
 		summarizeBy: none
 		sourceColumn: sede_id
-		isHidden
 
 	column sede
 		dataType: string
@@ -24,3 +24,6 @@ table dim_sede
 					Tipos
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

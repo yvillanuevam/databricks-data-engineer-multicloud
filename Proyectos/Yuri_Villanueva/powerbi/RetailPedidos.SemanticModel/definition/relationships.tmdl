@@ -9,3 +9,4 @@ relationship 29e334b1-3277-5ac8-bc26-9d2e55a6cf64
 relationship acfed4ef-8f1a-590d-b323-a22a42b941f0
 	fromColumn: fact_pedido.categoria_id
 	toColumn: dim_categoria.categoria_id
+

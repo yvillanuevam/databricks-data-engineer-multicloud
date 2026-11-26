@@ -10,7 +10,10 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_QueryOrder = ["ModoDemo","Servidor","RutaHTTP","Catalogo","EsquemaGold","Proveedor","LeerGold","dim_fecha","dim_sede","dim_categoria","fact_pedido"]
 
+annotation PBI_ProTooling = ["DevMode"]
+
 ref table dim_fecha
 ref table dim_sede
 ref table dim_categoria
 ref table fact_pedido
+

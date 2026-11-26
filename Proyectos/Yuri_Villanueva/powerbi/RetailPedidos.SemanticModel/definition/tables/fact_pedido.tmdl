@@ -1,7 +1,7 @@
 table fact_pedido
 	lineageTag: ea6fdfa5-72a8-53de-affe-d2c0c3066f26
 
-	measure 'Pedidos' = COUNTROWS(fact_pedido)
+	measure Pedidos = COUNTROWS(fact_pedido)
 		formatString: #,##0
 		lineageTag: 9de41d70-1ea5-549a-ad39-5a23f2236b7a
 
@@ -13,11 +13,11 @@ table fact_pedido
 		formatString: #,##0.00
 		lineageTag: 46d5f0f8-dbfc-5c6d-baa7-066d131e7482
 
-	measure 'Puntualidad' = DIVIDE(SUM(fact_pedido[es_puntual]), [Pedidos entregados])
+	measure Puntualidad = DIVIDE(SUM(fact_pedido[es_puntual]), [Pedidos entregados])
 		formatString: 0.0%
 		lineageTag: 23ccc0d8-81ce-5684-aa89-da2177908d23
 
-	measure 'Cancelación' = DIVIDE(SUM(fact_pedido[es_cancelado]), [Pedidos])
+	measure Cancelación = DIVIDE(SUM(fact_pedido[es_cancelado]), [Pedidos])
 		formatString: 0.0%
 		lineageTag: b7690eef-19fa-5f2a-b870-6328ea68667f
 
@@ -29,26 +29,26 @@ table fact_pedido
 
 	column fecha_pedido
 		dataType: dateTime
+		formatString: yyyy-mm-dd
 		lineageTag: 3f066829-d1f1-5b5a-accf-e3b58f55d9bf
 		summarizeBy: none
 		sourceColumn: fecha_pedido
-		formatString: yyyy-mm-dd
 
 		annotation UnderlyingDateTimeDataType = Date
 
 	column sede_id
 		dataType: string
+		isHidden
 		lineageTag: 52e55994-a3d2-5228-be68-779900263de4
 		summarizeBy: none
 		sourceColumn: sede_id
-		isHidden
 
 	column categoria_id
 		dataType: string
+		isHidden
 		lineageTag: 5f6a4a88-f2e1-5b72-b66b-1e6f98839e1a
 		summarizeBy: none
 		sourceColumn: categoria_id
-		isHidden
 
 	column canal
 		dataType: string
@@ -112,19 +112,19 @@ table fact_pedido
 
 	column fecha_promesa
 		dataType: dateTime
+		formatString: yyyy-mm-dd
 		lineageTag: 226e1440-3ee6-5d59-9de6-f8bb81c6707a
 		summarizeBy: none
 		sourceColumn: fecha_promesa
-		formatString: yyyy-mm-dd
 
 		annotation UnderlyingDateTimeDataType = Date
 
 	column fecha_entrega
 		dataType: dateTime
+		formatString: yyyy-mm-dd
 		lineageTag: 8b771bc1-6033-5dc1-9ddf-8dfaf4633d74
 		summarizeBy: none
 		sourceColumn: fecha_entrega
-		formatString: yyyy-mm-dd
 
 		annotation UnderlyingDateTimeDataType = Date
 
@@ -139,3 +139,6 @@ table fact_pedido
 					Tipos
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+
