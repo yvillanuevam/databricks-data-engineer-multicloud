@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %md
 # MAGIC # Calidad | Conciliación Gold, Silver y dimensiones
 # MAGIC La tarea falla si hay duplicados, huérfanos o diferencias en el negocio.

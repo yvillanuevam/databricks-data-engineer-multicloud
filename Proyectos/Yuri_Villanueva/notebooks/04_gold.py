@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %md
 # MAGIC # Gold | Modelo estrella de ventas y cumplimiento
 # MAGIC Grano: una fila por pedido. Tres dimensiones filtran la tabla de hechos:

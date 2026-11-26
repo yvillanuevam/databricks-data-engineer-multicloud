@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %md
 # MAGIC # Mantenimiento Delta | OPTIMIZE con ZORDER y VACUUM
 # MAGIC Se aplica a la tabla de hechos Gold. Bronze y Silver conservan su historial CDF

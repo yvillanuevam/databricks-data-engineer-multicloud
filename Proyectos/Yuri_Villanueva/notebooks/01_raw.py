@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %md
 # MAGIC # Raw | Archivos CSV de pedidos y cambios de estado
 # MAGIC Simulación determinística de un export diario del OMS de un retail.

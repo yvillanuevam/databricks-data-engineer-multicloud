@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %md
 # MAGIC # Silver | Calidad y última revisión por pedido
 # MAGIC Lee CDF desde Bronze, separa registros inválidos y aplica la revisión más

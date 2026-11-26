@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %md
 # MAGIC # Bronze | Auto Loader y Delta
 # MAGIC Conserva los campos de origen como texto y añade el archivo de procedencia.
