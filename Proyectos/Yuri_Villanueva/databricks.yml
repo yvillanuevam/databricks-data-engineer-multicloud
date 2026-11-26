@@ -4,7 +4,7 @@ bundle:
 variables:
   catalogo:
     description: Catálogo de Unity Catalog con permiso CREATE SCHEMA
-    default: ""
+    default: "workspace"
 
 targets:
   curso:
