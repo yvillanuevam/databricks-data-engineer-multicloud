@@ -105,11 +105,3 @@ Al 25/11 la prueba local produjo **S/ 521.743,40** en ventas entregadas, **1.636
 ## Power BI y sustentación
 
 - [Conectar y actualizar el informe de una página](powerbi/README.md).
-- [Guion de sustentación y recorrido de la demo](SUSTENTACION.md).
-
-## Referencias técnicas
-
-- [Auto Loader y manejo de esquemas](https://docs.databricks.com/aws/en/ingestion/cloud-object-storage/auto-loader/patterns)
-- [Change Data Feed](https://docs.databricks.com/aws/en/tables/features/change-data-feed)
-- [Job serverless con Declarative Automation Bundles](https://docs.databricks.com/aws/en/dev-tools/bundles/examples)
-- [Conector Databricks para Power BI](https://learn.microsoft.com/es-es/power-query/connectors/databricks)
